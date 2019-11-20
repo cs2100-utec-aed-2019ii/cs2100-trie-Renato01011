@@ -29,7 +29,6 @@ public:
                 Node<type> *newNode = new Node<char>();
                 temp->children.insert(std::pair<char, Node<char> *>{it, newNode});
                 temp = newNode;
-                temp->children.
             }
 		}
 		temp->is_word = true;
