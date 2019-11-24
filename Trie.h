@@ -101,30 +101,34 @@ public:
 	}
 
 	void print(Node<type>* temp, int& i) {
-	    for (auto& [letter, node] : temp->children) {
-            std::cout << letter << ' ';
-            i++;
-            print(node, i);
-            if (node->is_word) {
-                std::cout << std::endl;
-                for (int j = 0; j < i-1; j++) {
-                    std::cout << "  ";
+	    int iter = 0;
+	    for (auto itr = temp->children.begin(); itr != temp->children.end(); itr++) {
+            if (iter > 0) {
+                for (int j = 0; j < i; j++) {
+                    std::cout << "\" ";
                 }
             }
-        }
-        i--;
+	        std::cout << itr->first << ' ';
+            i++;
+            print(itr->second, i);
+            if (itr->second->is_word) {
+                std::cout << std::endl;
+            }
+            i--;
+            iter++;
+	    }
     }
 
 	void print() {
 		Node<type>* temp = root;
 		int i = 0;
-        for (auto& [letter, node] : temp->children) {
-            std::cout << letter << ' ';
-            i++;
-            print(node, i);
-            std::cout << std::endl;
-            i = 0;
-        }
+		for (auto& [letter, node] : temp->children) {
+		    std::cout << letter << ' ';
+		    i++;
+		    print(node, i);
+		    std::cout << std::endl;
+		    i = 0;
+		}
 	}
 };
 
